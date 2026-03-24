@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.transition-container {
+    z-index: 200;
+    position: fixed;
+    inset: 0%;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.transition-screen {
+    background-color: #000000;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.transition-scribble {
+    color: #4b69f0;
+    width: 120%;
+    height: 120%;
+    display: block;
+    position: absolute;
+    top: -5.5%;
+    left: -12%;
+}
+
+.transition-scribble {
+    width: 140%;
+    left: -22%;
+}

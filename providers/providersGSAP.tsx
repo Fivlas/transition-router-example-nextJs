@@ -3,11 +3,15 @@
 import { gsap } from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import { TransitionRouter } from "next-transition-router";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 
 gsap.registerPlugin(DrawSVGPlugin);
 
-export function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersGSAPProps {
+    children: ReactNode;
+}
+
+const ProvidersGSAP = ({ children }: ProvidersGSAPProps) => {
     const transitionRef = useRef<SVGSVGElement>(null);
 
     return (
@@ -17,7 +21,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
                 timeline
                     .set(".transition-container", { autoAlpha: 1 })
-                    .fromTo(".transition-screen", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2, ease: "power1.out" }, "<")
+                    .fromTo(
+                        ".transition-screen",
+                        { autoAlpha: 0 },
+                        { autoAlpha: 1, duration: 0.2, ease: "power1.out" },
+                        "<",
+                    )
                     .fromTo(
                         ".transition-scribble path",
                         { drawSVG: "0%", strokeWidth: "1%" },
@@ -26,7 +35,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
                             drawSVG: "100%",
                             duration: 1,
                             ease: "power1.inOut",
-                        }
+                        },
                     );
             }}
             enter={(next) => {
@@ -48,7 +57,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
                             ease: "power1.inOut",
                         },
                     )
-                    .fromTo(".transition-screen", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, "<");
+                    .fromTo(
+                        ".transition-screen",
+                        { autoAlpha: 1 },
+                        { autoAlpha: 0, duration: 0.25, ease: "power1.in" },
+                        "<",
+                    );
             }}
         >
             <div className="transition-container">
@@ -74,3 +88,5 @@ export function Providers({ children }: { children: React.ReactNode }) {
         </TransitionRouter>
     );
 }
+
+export default ProvidersGSAP;
